@@ -127,7 +127,7 @@ public class MinesweeperModel {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if(player==1){
-                    if(rand.nextInt(7) == 1) {
+                    if(rand.nextInt(8) == 1) {
                         model[i][j] = MINE;
                         Log.i("MODEL_TAG", "Model " + "[" + i + "]" + "[" + j + "]" + " has a mine!");
                     }
