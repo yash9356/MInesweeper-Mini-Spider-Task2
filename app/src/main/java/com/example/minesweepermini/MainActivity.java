@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 numflag.setText(Integer.toString(amine));
                 Totflags=MinesweeperModel.getInstance().countMines();
 
-                Snackbar restartSnackbar = Snackbar.make(linearLayout, "Normal Mode", Snackbar.LENGTH_LONG);
+                Snackbar restartSnackbar = Snackbar.make(linearLayout, "Easy Mode", Snackbar.LENGTH_LONG);
                 restartSnackbar.show();
                 Toast.makeText(MainActivity.this,"Tap on Middle of Grid to Start",Toast.LENGTH_SHORT).show();
             }
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             point1=(Totflags-amine)*10;
             points.setText(Integer.toString(point1));
             numflag.setText(Integer.toString(amine));
-            Toast.makeText(MainActivity.this,"Tap on Middle of Grid to Start",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Tap on Middle of Grid to ReStart ",Toast.LENGTH_SHORT).show();
         }
     }
 
