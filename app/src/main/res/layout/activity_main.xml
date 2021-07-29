@@ -16,9 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="116dp"
-        android:textColor="#FDFCFC"
-        android:textSize="20dp"
+        android:layout_marginTop="100dp"
+        android:textColor="#090909"
+        android:textSize="23dp"
+        android:textStyle="normal|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></Chronometer>
 
@@ -61,19 +62,19 @@
 
         <ImageButton
             android:id="@+id/btnRestart"
-            android:layout_width="82dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/restart10" />
+            android:background="@drawable/easymode" />
 
         <ImageButton
             android:id="@+id/btnFlag"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/flag4"
             android:text="Flag" />
@@ -82,11 +83,20 @@
             android:id="@+id/btnReveal"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/shovel3"
             android:text="Reveal" />
+
+        <ImageButton
+            android:id="@+id/HardPlay"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/hardmode1" />
 
     </LinearLayout>
 
@@ -94,8 +104,8 @@
         android:id="@+id/numflag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginLeft="164dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#FA0303"
@@ -123,9 +133,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="4dp"
-        android:text="TextView"
+        android:text="High Score"
         android:textColor="#FDFCFC"
         android:textSize="20dp"
+        android:textStyle="normal|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

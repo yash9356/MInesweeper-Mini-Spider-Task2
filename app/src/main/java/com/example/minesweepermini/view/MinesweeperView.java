@@ -76,7 +76,7 @@ public class MinesweeperView extends View  {
         sevenBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.num7, options);
         eightBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.num8, options);
 
-        MinesweeperModel.getInstance().setMines();
+        MinesweeperModel.getInstance().setMines(1);
         MinesweeperModel.getInstance().setMineCount();
     }
 
@@ -203,7 +203,7 @@ public class MinesweeperView extends View  {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (gameEnd) {
                 MinesweeperModel.getInstance().cleanBoard();
-                MinesweeperModel.getInstance().setMines();
+                MinesweeperModel.getInstance().setMines(1);
                 MinesweeperModel.getInstance().setMineCount();
                 invalidate();
                 gameEnd = false;

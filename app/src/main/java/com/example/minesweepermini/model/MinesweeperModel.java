@@ -122,13 +122,22 @@ public class MinesweeperModel {
         Log.d("MODEL_TAG", "actionType = REVEAL!");
     }
 
-    public void setMines() {
+    public void setMines(int player) {
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if(rand.nextInt(6) == 1) {
-                    model[i][j] = MINE;
-                    Log.i("MODEL_TAG", "Model " + "[" + i + "]" + "[" + j + "]" + " has a mine!");
+                if(player==1){
+                    if(rand.nextInt(7) == 1) {
+                        model[i][j] = MINE;
+                        Log.i("MODEL_TAG", "Model " + "[" + i + "]" + "[" + j + "]" + " has a mine!");
+                    }
+                }else if(player==2){
+                    if(rand.nextInt(4) == 1) {
+                        model[i][j] = MINE;
+                        Log.i("MODEL_TAG", "Model " + "[" + i + "]" + "[" + j + "]" + " has a mine!");
+                    }
                 }
+
             }
         }
     }

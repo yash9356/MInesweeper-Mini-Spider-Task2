@@ -13,6 +13,7 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayout = (LinearLayout) findViewById(R.id.snackbar);
 
         ImageButton btnRestart = (ImageButton) findViewById(R.id.btnRestart);
+        ImageButton hardplay = (ImageButton) findViewById(R.id.HardPlay);
         vibrator=(Vibrator)getSystemService(VIBRATOR_SERVICE);
         Totflags=MinesweeperModel.getInstance().countMines();
         numflag=findViewById(R.id.numflag);
@@ -98,14 +100,55 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 MinesweeperModel.getInstance().cleanBoard();
-                MinesweeperModel.getInstance().setMines();
+                MinesweeperModel.getInstance().setMines(1);
                 MinesweeperModel.getInstance().setMineCount();
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                chronometer.start();
                 point1=0;
-                numflag.setText(Integer.toString(point1));
+                points.setText("Points:"+Integer.toString(point1));
+                amine=MinesweeperModel.getInstance().Points();
+                numflag.setText(Integer.toString(amine));
                 Totflags=MinesweeperModel.getInstance().countMines();
 
-                Snackbar restartSnackbar = Snackbar.make(linearLayout, "Game restarted", Snackbar.LENGTH_LONG);
+                Snackbar restartSnackbar = Snackbar.make(linearLayout, "Normal Mode", Snackbar.LENGTH_LONG);
                 restartSnackbar.show();
+                Toast.makeText(MainActivity.this,"Tap on Middle of Grid to Start",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        hardplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences settings=getSharedPreferences("Quiz_DATA", Context.MODE_PRIVATE);
+                amine=MinesweeperModel.getInstance().Points();
+                Totflags=MinesweeperModel.getInstance().countMines();
+                point1=(Totflags-amine)*10;
+                int highscore2=settings.getInt("HIGH_SCORE",0);
+                if(point1>highscore2){
+                    High_Score.setText("High Score:"+Integer.toString(point1));
+                    SharedPreferences.Editor editor=settings.edit();
+                    editor.putInt("HIGH_SCORE",point1);
+                    editor.commit();
+                }
+                else {
+                    High_Score.setText("High Score:"+Integer.toString(highscore2));
+                }
+
+                MinesweeperModel.getInstance().cleanBoard();
+                MinesweeperModel.getInstance().setMines(2);
+                MinesweeperModel.getInstance().setMineCount();
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                chronometer.start();
+                point1=0;
+                points.setText("Points:"+Integer.toString(point1));
+                amine=MinesweeperModel.getInstance().Points();
+                numflag.setText(Integer.toString(amine));
+                Totflags=MinesweeperModel.getInstance().countMines();
+
+
+                Snackbar restartSnackbar = Snackbar.make(linearLayout, "Hard Mode", Snackbar.LENGTH_LONG);
+                restartSnackbar.show();
+                Toast.makeText(MainActivity.this,"Tap on Middle of Grid to Start",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -162,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         // Restart the game
                         MinesweeperModel.getInstance().cleanBoard();
-                        MinesweeperModel.getInstance().setMines();
+                        MinesweeperModel.getInstance().setMines(1);
                         MinesweeperModel.getInstance().setMineCount();
                     }
                 }
@@ -177,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
             point1=(Totflags-amine)*10;
             points.setText(Integer.toString(point1));
             numflag.setText(Integer.toString(amine));
+            Toast.makeText(MainActivity.this,"Tap on Middle of Grid to Start",Toast.LENGTH_SHORT).show();
         }
     }
 
