@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     Vibrator vibrator;
     public int point1=0;
+    public boolean player1=false,player2=false;
     public int Totflags,amine;
     private TextView numflag,points,High_Score;
     private Chronometer chronometer;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         linearLayout = (LinearLayout) findViewById(R.id.snackbar);
 
-        ImageButton btnRestart = (ImageButton) findViewById(R.id.btnRestart);
+        ImageButton easyplay = (ImageButton) findViewById(R.id.btnRestart);
         ImageButton hardplay = (ImageButton) findViewById(R.id.HardPlay);
         vibrator=(Vibrator)getSystemService(VIBRATOR_SERVICE);
         Totflags=MinesweeperModel.getInstance().countMines();
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        btnRestart.setOnClickListener(new View.OnClickListener() {
+        easyplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences settings=getSharedPreferences("Quiz_DATA", Context.MODE_PRIVATE);
@@ -109,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 amine=MinesweeperModel.getInstance().Points();
                 numflag.setText(Integer.toString(amine));
                 Totflags=MinesweeperModel.getInstance().countMines();
+                player1=true;
+                player2=false;
 
                 Snackbar restartSnackbar = Snackbar.make(linearLayout, "Easy Mode", Snackbar.LENGTH_LONG);
                 restartSnackbar.show();
@@ -144,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 amine=MinesweeperModel.getInstance().Points();
                 numflag.setText(Integer.toString(amine));
                 Totflags=MinesweeperModel.getInstance().countMines();
+                player2=true;
+                player1=false;
 
 
                 Snackbar restartSnackbar = Snackbar.make(linearLayout, "Hard Mode", Snackbar.LENGTH_LONG);
@@ -205,7 +210,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         // Restart the game
                         MinesweeperModel.getInstance().cleanBoard();
-                        MinesweeperModel.getInstance().setMines(1);
+                        if(!player2){
+                            MinesweeperModel.getInstance().setMines(1);
+                        }
+                        else if(!player1){
+                            MinesweeperModel.getInstance().setMines(2);
+                        }
+
                         MinesweeperModel.getInstance().setMineCount();
                     }
                 }
